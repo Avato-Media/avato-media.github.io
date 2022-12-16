@@ -4,160 +4,80 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avato Media</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script>
-        let mobileDrawerStatus = 'up';
-        var mobileDrawer;
-        var mobileNavLinks;
-        $(function() {
-            let mobileDrawerjQ = $("#mobile-drawer");
+    <title>AVATO Media - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css" integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css" integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css" integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+    <script defer>
+        
+        $().ready( () => {
+            $(".nav__menu").slideToggle();
 
-            mobileDrawer = document.getElementById('mobile-drawer');
-            mobileDrawerBtn = document.getElementById('drawer-btn');
-            mobileNavLinks = mobileDrawer.getElementsByClassName('nav-link');
-
-            $('#drawer-btn').click((event) => {
+            $("#navigation__btn").click( (event) => {
                 event.preventDefault();
-                console.log('clicked jQuery!');
-                toggleNavDrawer();
+                $(".nav__menu").slideToggle();
             });
-
-            mobileDrawerBtn.onclick = (event) => {
-                event.preventDefault();
-                console.log('clicked vanilla js!');
-            };
-
-            mobileDrawerjQ.slideUp();
-
-            $('#loader-container').fadeOut(1000, 'easeInOutExpo');
-            
         });
-
-
-        function toggleNavDrawer() {
-            let mobileDrawerjQ = $("#mobile-drawer");
-
-            if(mobileDrawerStatus === 'up') {
-                mobileDrawerjQ.slideDown();
-                mobileDrawerStatus = 'down';
-            } else if (mobileDrawerStatus === 'down') {
-                mobileDrawerjQ.slideUp();
-                mobileDrawerStatus = 'up';
-            }
-        }
     </script>
 </head>
 <body>
-    <div id="loader-container">
-        <svg 
-            viewBox="140 130 820 840" 
-            version="1.1" 
-            id="loader-logo" 
-            xml:space="preserve" 
-            sodipodi:docname="avato-media-logo.svg" 
-            xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-            <defs id="defs2"/>
-            <g 
-                id="layer4" 
-                style="
-                    display:inline;
-                    stroke-dasharray:240, 240;
-                    stroke-dashoffset:0;
-                    stroke-opacity:1;
-                    fill: none;
-                    stroke-linecap: round;
-                    stroke-linejoin: bevel;">
-                <path id="path15854" d="m 904.96019,277.28785 -251.40431,502.8086 h 94.36523 L 952.14379,371.65113 Z"/>
-                <path id="rect14234" d="M 625.02268,277.27613 513.58323,500.15309 587.82737,648.63941 773.50901,277.27613 Z"/>
-                <path id="path15852" d="M 904.95432,277.27613 H 773.50901 l -185.68164,371.36328 65.72852,131.45704 251.40429,-502.8086 z"/>
-                <path id="path15856" d="M 653.55589,780.09645 587.82737,648.63941 513.58323,500.15309 v 0 l -45.25391,-90.50586 -185.2246,370.44922 z"/>
-                <path id="path15858" d="M 283.10472,780.09645 468.32932,409.64723 402.14378,277.27613 150.73363,780.09645 Z"/>
-                <path id="path15860" d="m 402.14378,277.27613 66.18554,132.3711 45.25391,90.50586 111.43945,-222.87696 z"/>
-                <path d="m 904.95432,277.27613 23.59767,47.19336" id="path3241"/>
-            </g>
-        </svg>
-        <h5>Loading...</h5>
-    </div>
-    <nav id="mobile-nav" class="nav-box">
-        <a href="/" class="nav-item nav-link flex-inl">
-            <!--img src="#" alt="Avato Media" id="avato-media-logo" class="nav-logo"-->
-            <svg width="65" height="65" viewBox="110 110 880 880" version="1.1" id="svg5" xml:space="preserve" sodipodi:docname="avato-media-logo.svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs2"/><g inkscape:groupmode="layer" id="layer3" inkscape:label="Drawing Layer" style="display:inline;stroke-width:30;stroke-dasharray:240, 240;stroke-dashoffset:0;stroke-opacity:1;fill: none;stroke-linecap: round;stroke-linejoin: bevel;"><path id="path15854" d="m 904.96019,277.28785 -251.40431,502.8086 h 94.36523 L 952.14379,371.65113 Z"/><path id="rect14234" d="M 625.02268,277.27613 513.58323,500.15309 587.82737,648.63941 773.50901,277.27613 Z"/><path id="path15852" d="M 904.95432,277.27613 H 773.50901 l -185.68164,371.36328 65.72852,131.45704 251.40429,-502.8086 z"/><path id="path15856" d="M 653.55589,780.09645 587.82737,648.63941 513.58323,500.15309 v 0 l -45.25391,-90.50586 -185.2246,370.44922 z"/><path id="path15858" d="M 283.10472,780.09645 468.32932,409.64723 402.14378,277.27613 150.73363,780.09645 Z"/><path id="path15860" d="m 402.14378,277.27613 66.18554,132.3711 45.25391,90.50586 111.43945,-222.87696 z"/><path d="m 904.95432,277.27613 23.59767,47.19336" id="path3241"/></g></svg>
-            <div class="vr-sm" style="margin: 1rem;"></div>
-            <span id="avato-media-name" class="nav-title" style="color:inherit;">AVATO Media</span>
-        </a>
-        <a id="drawer-btn" href="#" class="nav-item nav-link flex-inl">
-            <i class="fas fa-bars"></i>
-        </a>
-    </nav>
-    <ul id="mobile-drawer" class="nav-box">
-        <a href="#" class="nav-item nav-link flex-inl">Services</a>
-        <a href="#" class="nav-item nav-link flex-inl">Our Work</a>
-        <a href="#" class="nav-item nav-link flex-inl">About Us</a>
-        <a href="https://wa.me/18768309280/" target="_blank" rel="noopener noreferrer" class="nav-item nav-link flex-inl">
-            <i class="fab fa-whatsapp"></i>
-            <div class="vr-sm" style="margin: 1rem;"></div>
-            <span id="avato-media-number" class="nav-title" style="color:inherit;">+1-876-830-9280</span>
-        </a>
-    </ul>
-    <nav id="top-nav" class="nav-box">
-        <a href="/" class="nav-item nav-link flex-inl">
-            <!--img src="#" alt="Avato Media" id="avato-media-logo" class="nav-logo"-->
-            <svg width="65" height="65" viewBox="110 110 880 880" version="1.1" id="svg5" xml:space="preserve" sodipodi:docname="avato-media-logo.svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs2"/><g inkscape:groupmode="layer" id="layer3" inkscape:label="Drawing Layer" style="display:inline;stroke-width:30;stroke-dasharray:240, 240;stroke-dashoffset:0;stroke-opacity:1;fill: none;stroke-linecap: round;stroke-linejoin: bevel;"><path id="path15854" d="m 904.96019,277.28785 -251.40431,502.8086 h 94.36523 L 952.14379,371.65113 Z"/><path id="rect14234" d="M 625.02268,277.27613 513.58323,500.15309 587.82737,648.63941 773.50901,277.27613 Z"/><path id="path15852" d="M 904.95432,277.27613 H 773.50901 l -185.68164,371.36328 65.72852,131.45704 251.40429,-502.8086 z"/><path id="path15856" d="M 653.55589,780.09645 587.82737,648.63941 513.58323,500.15309 v 0 l -45.25391,-90.50586 -185.2246,370.44922 z"/><path id="path15858" d="M 283.10472,780.09645 468.32932,409.64723 402.14378,277.27613 150.73363,780.09645 Z"/><path id="path15860" d="m 402.14378,277.27613 66.18554,132.3711 45.25391,90.50586 111.43945,-222.87696 z"/><path d="m 904.95432,277.27613 23.59767,47.19336" id="path3241"/></g></svg>
-            <div class="vr-sm" style="margin: 1rem;"></div>
-            <span id="avato-media-name" class="nav-title" style="color:inherit;">AVATO Media</span>
-        </a>
-        <div class="flex-spacer">
-        </div>
-        <a href="#" class="nav-item nav-link flex-inl">Services</a>
-        <a href="#" class="nav-item nav-link flex-inl">Our Work</a>
-        <a href="#" class="nav-item nav-link flex-inl">About Us</a>
-        <div class="flex-spacer"></div>
-        <a href="https://wa.me/18768309280/" target="_blank" rel="noopener noreferrer" class="nav-item nav-link flex-inl">
-            <i class="fab fa-whatsapp"></i>
-            <div class="vr-sm" style="margin: 1rem;"></div>
-            <span id="avato-media-number" class="nav-title" style="color:inherit;">+1-876-830-9280</span>
-        </a>
-    </nav>
-    <div class="main-wrapper">
-        <header id="landing-hero" class="hero header-flex">
-            <video id="background-video" autoplay loop muted>
-                <source src="img/background.mp4"" type="video/mp4">
-            </video>
-            <div id="cta-section" class="grid-inl">
-                <span id="design-text" class="flex-inl hero-title">DESIGN</span>
-                <span id="design-detail" class="flex-inl hero-subtitle">your brand</span>
-                <span id="make-text" class="flex-inl hero-title">MAKE</span>
-                <span id="make-detail" class="flex-inl hero-subtitle">your mark</span>
-                <span id="grow-text" class="flex-inl hero-title">GROW</span>
-                <span id="grow-detail" class="flex-inl hero-subtitle">your business</span>
-                <button id="how-we-do-btn" class="hero-btn btn" onclick="window.location.assign('/#temp')">How We Can Help</button>
-            </div>
-            <div class="vr-xl"></div>
-            <div id="splash-section" class="flex-inl col">
-                    <div id="brands-we-work-1" class="flex-inl logo-slider">
-                        <img src="img/logo (1).png" alt="Brand Logo" class="brand-logo">
-                        <img src="img/logo (2).png" alt="Brand Logo" class="brand-logo">
-                        <img src="img/logo (3).png" alt="Brand Logo" class="brand-logo">
-                    </div>
-                <div id="avato-media-splash" class="flex-inl col">
-                    <svg viewBox="140 130 820 840" version="1.1" id="svg5" xml:space="preserve" sodipodi:docname="avato-media-logo.svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs2"/><g inkscape:groupmode="layer" id="layer4" inkscape:label="Drawing Layer" style="display:inline;stroke-dasharray:240, 240;stroke-dashoffset:0;stroke-opacity:1;fill: none;stroke-linecap: round;stroke-linejoin: bevel;"><path id="path15854" d="m 904.96019,277.28785 -251.40431,502.8086 h 94.36523 L 952.14379,371.65113 Z"/><path id="rect14234" d="M 625.02268,277.27613 513.58323,500.15309 587.82737,648.63941 773.50901,277.27613 Z"/><path id="path15852" d="M 904.95432,277.27613 H 773.50901 l -185.68164,371.36328 65.72852,131.45704 251.40429,-502.8086 z"/><path id="path15856" d="M 653.55589,780.09645 587.82737,648.63941 513.58323,500.15309 v 0 l -45.25391,-90.50586 -185.2246,370.44922 z"/><path id="path15858" d="M 283.10472,780.09645 468.32932,409.64723 402.14378,277.27613 150.73363,780.09645 Z"/><path id="path15860" d="m 402.14378,277.27613 66.18554,132.3711 45.25391,90.50586 111.43945,-222.87696 z"/><path d="m 904.95432,277.27613 23.59767,47.19336" id="path3241"/></g></svg>
-                    <h1 id="avato-media-name" class="hero-title">AVATO </h1>
-                    <b id="avato-media-name" class="hero-title">Media</b>
+    <div id="main-wrapper">
+        <nav id="navigation" class="nav">
+            <div class="nav__bar">
+                <div class="nav__menu-btn">
+                    <button id="navigation__btn" class="nav__btn" title="Navigation Links"><i class="fas fa-bars"></i></button>
                 </div>
-                    <div id="brands-we-work-2" class="flex-inl logo-slider">
-                        <img src="img/logo (4).png" alt="Brand Logo" class="brand-logo">
-                        <img src="img/logo (5).png" alt="Brand Logo" class="brand-logo">
-                        <img src="img/logo (6).png" alt="Brand Logo" class="brand-logo">
-                    </div>
+                <div class="nav__heading">
+                    <h1><b>AVATO</b> Media</h1>
+                </div>
+                <div class="nav__item">
+                    <a href="#" class="nav__link"><i class="fab fa-whatsapp"></i>+1-876-830-9280</a>
+                </div>
             </div>
+            <div class="nav__menu">
+                <a href="#">Home</a>
+                <a href="#">Services</a>
+                <a href="#">Place an Order</a>
+                <a href="#">Contact Us</a>
+                <a href="#">About Us</a>
+                <div class="nav__social-links">
+                    <a href="#" class="nav__social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="nav__social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="nav__social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="nav__social-link"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </nav>
+        <header id="jumbotron">
+            <section class="left">Jumbo Left</section>
+            <section class="center">Jumbo Center</section>
+            <section class="right">Jumbo Right</section>
+            <article class="top left">Content Top Left</article>
+            <article class="top center">Content Top Center</article>
+            <article class="top right">Content Top Right</article>
+            <article class="bottom left">Content Bottom Left</article>
+            <article class="bottom center">Content Bottom Center</article>
+            <article class="bottom right">Content Bottom Right</article>
         </header>
-        <div id="temp" class="full-page flex">
-            <h1>More to Come!</h1>
-        </div>
+        <section class="content">
+            <article class="body left">Content Left 1</article>
+            <article class="body center">Content Center 1</article>
+            <article class="body right">Content Right 1</article>
+            <article class="body left">Content Left 2</article>
+            <article class="body center">Content Center 2</article>
+            <article class="body right">Content Right 2</article>
+            <article class="top left">Content Top Left</article>
+            <article class="top center">Content Top Center</article>
+            <article class="top right">Content Top Right</article>
+            <article class="bottom left">Content Bottom Left</article>
+            <article class="bottom center">Content Bottom Center</article>
+            <article class="bottom right">Content Bottom Right</article>
+        </section>
+        <footer id="footer">Footer</footer>
     </div>
 </body>
 </html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!-- Preloaded In-House Stylesheets -->
+    <!-- AVATO Media CSS Reset -->
+    <link rel="stylesheet" href="/css/reset.css">
+    
+    <!-- Pure.CSS ->
+    <-- Pure.CSS Grid Component ->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-min.css" />
+    <-- Pure.CSS Grid Responsive Component ->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css" /-->
+
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" integrity="sha512-HqxHUkJM0SYcbvxUw5P60SzdOTy/QVwA1JJrvaXJv4q7lmbDZCmZaqz01UPOaQveoxfYRv1tHozWGPMcuTBuvQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome -->
+    <!-- Font Awesome Brand Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css" integrity="sha512-G/T7HQJXSeNV7mKMXeJKlYNJ0jrs8RsWzYG7rVACye+qrcUhEAYKYzaa+VFy6eFzM2+/JT1Q+eqBbZFSHmJQew==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome Icons Default -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css" integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome Icons Solid -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css" integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Materialize CSS -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+
+    <!-- Postloaded In-House Stylesheets -->
+    <link rel="stylesheet" href="/css/theme.css">
+    <script src=""></script>
+    <script defer>
+        let sideNavStatus = 'hide';
+        let childNodesSet = false;
+        
+        let triggerBtn;
+        let sideNav;
+        let preloader;
+        let mainContent;
+        
+        window.onload = () => {
+            // Get All Elements
+            preloader = document.querySelector("#preloader");
+            mainContent = document.querySelector("#main-wrapper");
+
+            setTimeout(() => {
+                preloader.classList.toggle("loader-hide");
+                mainContent.classList.toggle("content-show");
+            }, 5000)
+            // Do Events
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get all Elements
+            triggerBtn = document.querySelector(".sidenav-trigger");
+
+            // Add Event Listeners
+            triggerBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+                toggleSideNav();
+            })
+        });
+
+        function toggleSideNav(toggle) {
+            if(!childNodesSet){
+                
+                sideNav = document.querySelector("#".concat(triggerBtn.getAttribute("data-target")));
+                sideNav.childNodes.forEach((node) => {
+                    if(node.nodeName === "LI") {
+                        node.addEventListener('click', (event) => {
+                            event.preventDefault();
+                            toggleSideNav('hide');
+
+                            if(event.target.nodeName != "A"){
+                                location.href = event.target.parentNode.href;
+                            } else {
+                                location.href = event.target.href;
+                            }
+                        })
+                    }
+                });
+                childNodesSet = true;
+            }
+
+            switch(toggle) {
+                case 'show':
+                    sideNav.setAttribute("style", "transform: translateX(0%); transition: transform 0.55s ease-in-out;");
+                    sideNavStatus = 'show';
+                    break;
+                case 'hide':
+                    sideNav.setAttribute("style", "transform: translateX(-105%);  transition: transform 0.55s ease-in-out;");
+                    sideNavStatus = 'hide';
+                    break;
+                default:
+                    switch (sideNavStatus) {
+                        case 'hide':
+                            sideNav.setAttribute("style", "transform: translateX(0%);  transition: transform 0.55s ease-in-out;");
+                            sideNavStatus = 'show';
+                            break;
+                        case 'show':
+                            sideNav.setAttribute("style", "transform: translateX(-105%);  transition: transform 0.55s ease-in-out;");
+                            sideNavStatus = 'hide';
+                            break;
+                        default:
+                            sideNav.setAttribute("style", "transform: translateX(-105%);  transition: transform 0.55s ease-in-out;");
+                            sideNavStatus = 'hide';
+                            break;
+                    }
+                    break;
+            }
+        }
+    </script>
+    <style>
+        .loader-hide {
+            opacity: 0%;
+            transition: all 1.5s ease-out;
+        }
+        #main-wrapper {
+            opacity: 0%;
+            transition: all 1.5s ease-in;
+        }
+        .content-show {
+            opacity: 100% !important;
+            transition: all 1.5s ease-in !important;
+        }
+
+        /*
+        .navbar {
+
+        }
+        .navbar__logo {
+            justify-content: center;
+        }
+        .navbar__logo_link {
+            justify-content: space-around;
+            align-items: center;
+        }
+        .navbar__logo_icon,
+        .navbar__logo_text {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar__links {
+            height: 100%;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .navbar__tel {
+            width: 100%;
+            height: 100%;
+            flex-grow: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .navbar__links_link {
+            flex-grow: 1;
+            display: inline-flex;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+        .vr-sm {
+            --theme-primary-col: #222;
+            height: 1em;
+            width: 0px;
+            border-left: 1px solid var(--theme-primary-col);
+        }
+        .vr-md {
+            --theme-primary-col: #222;
+            height: 1.75em;
+            width: 0px;
+            border-left: 1px solid var(--theme-primary-col);
+        }
+        .vr-lg {
+            --theme-primary-col: #222;
+            height: 2.5em;
+            width: 0px;
+            border-left: 1px solid var(--theme-primary-col);
+        }
+        .vr-xl {
+            --theme-primary-col: #222;
+            height: 4.25em;
+            width: 0px;
+            border-left: 1px solid var(--theme-primary-col);
+        }
+        .vr-2x {
+            --theme-primary-col: #222;
+            height: 7.725em;
+            width: 0px;
+            border-left: 1px solid var(--theme-primary-col);
+        }
+        .vr-4x {
+            --theme-primary-col: #222;
+            height: 9.1725em;
+            width: 0px;
+            border-left: 1px solid var(--theme-primary-col);
+        } */
+
+        /* Media Queries */
+        /*
+        @media screen and (max-width: 35.5em) {
+            
+        }
+        @media screen and (max-width: 48em) {
+            
+        }
+        @media screen and (max-width: 64em) {
+            .navbar__links_link, .navbar__tel {
+                padding: 1em 0;
+            }
+        }
+        @media screen and (max-width: 80em) {
+            
+        } */
+
+    </style>
+    <title>AVATO Media</title>
+</head>
+<body>
+    <div id="preloader" style="margin: auto; position: fixed; top: 0; display: flex; align-items: center; justify-content: center; height: 100vh; width: 100vw; padding: 5em;">
+        <div style="display: flex; flex-grow: 1; max-width: 23em;">
+            <div class="progress light-blue lighten-4">
+                <div class="indeterminate blue darken-2"></div>
+            </div>
+        </div>
+    </div>
+    <div id="main-wrapper" style="">
+        <!-- Navigation Bar -->
+        <div class="navbar-fixed">
+            <nav class="blue lighten-2">
+                <div class="nav-wrapper">
+                    <a href="/" class="brand-logo center" style="height: 100%;">
+                        <img src="/assets/img/av-logo-black-ico.webp" alt="AVATO Media Logo" style="-ms-filter: invert(); -webkit-filter: invert(); filter: invert(); max-height:2em;">
+                    </a>
+                    <a href="#!" data-target="mobile-links" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <!--div-- class="vr-md"></!--div-->
+                        <li><a href="#" class="">Services</a></li>
+                        <!--div-- class="vr-md"></!--div-->
+                        <li><a href="#" class="">Our Works</a></li>
+                        <!--div-- class="vr-md"></!--div-->
+                        <li><a href="#" class="">About Us</a></li>
+                        <!--div-- class="vr-md"></!--div-->
+                    </ul>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a class="" href="https://api.whatsapp.com/send/?phone=18768309280&text=Hi,%20Gerard.%20I%20want%20to%20know%20more%20about%20Avato%20Media.">+1-876-830-9280</a></li>
+                    </ul>
+                </div>
+            </nav>
+        
+        </div>
+        
+        <ul class="sidenav" id="mobile-links">
+            <li class="sidenav__item"><a href="#!"><i class="fas fa-close"></i> Close</a></li>
+            <li class="sidenav__item"><a href="#"><i class="fas fa-servicestack"></i>Services</a></li>
+            <li class="sidenav__item"><a href="#">Our Works</a></li>
+            <li class="sidenav__item"><a href="#">About Us</a></li>
+            <li class="sidenav__item"><a class="" href="https://api.whatsapp.com/send/?phone=18768309280&text=Hi,%20Gerard.%20I%20want%20to%20know%20more%20about%20Avato%20Media.">+1-876-830-9280</a></li>
+        </ul>
+        <!-- Header Jumbotron built with Pure.CSS -->
+        <header class="pure-g">
+            <div class="pure-u-1 pure-u-md-1-2">
+                <div class="pure-g">
+                    <div class="pure-u-1">
+                        <img src="/assets/img/av-logo-black.webp" alt="AVATO Media Logo" class="pure-img">
+                    </div>
+                    <div class="pure-u-1">
+                        <h1>AVATO</h1>
+                        <h2>Media</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-2">
+                <div class="pure-g">
+                    <div class="pure-u-1-2">
+                        <h2>Design</h2>
+                        <h2>Make</h2>
+                        <h2>Grow</h2>
+                    </div>
+                    <div class="pure-u-1-2">
+                        <h5>Your Brand</h5>
+                        <h5>Your Mark</h5>
+                        <h5>Your Business</h5>
+                    </div>
+                    <div class="pure-u-1">
+                        <button>How We Do It For You</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Design Description Section built with Pure.CSS -->
+        <section class="pure-g">
+            <article class="pure-u-1">
+                <div class="pure-g">
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <img src="https://via.placeholder.com/300/" alt="Dummy Image" class="pure-img">
+                    </div>
+                    <div class="pure-u-1 pure-u-md-2-3">
+                        <h3>So, you have an idea?</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id non pariatur reprehenderit nam unde. Culpa ipsum velit, quo molestias officiis consequatur aut rem. Odit inventore porro dolor dolore dicta explicabo, facere molestias omnis ipsa.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="pure-u-1">
+                <div class="pure-g">
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <img src="https://via.placeholder.com/300/" alt="Dummy Image" class="pure-img">
+                    </div>
+                    <div class="pure-u-1 pure-u-md-2-3">
+                        <h3>Hey! You already have a brand!</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id non pariatur reprehenderit nam unde. Culpa ipsum velit, quo molestias officiis consequatur aut rem. Odit inventore porro dolor dolore dicta explicabo, facere molestias omnis ipsa.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="pure-u-1">
+                <div class="pure-g">
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <img src="https://via.placeholder.com/300/" alt="Dummy Image" class="pure-img">
+                    </div>
+                    <div class="pure-u-1 pure-u-md-2-3">
+                        <h3>You're up already? That's awesome!</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id non pariatur reprehenderit nam unde. Culpa ipsum velit, quo molestias officiis consequatur aut rem. Odit inventore porro dolor dolore dicta explicabo, facere molestias omnis ipsa.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <!-- Design Description Section CTA built with Pure.CSS -->
+        <section class="pure-g">
+            <div class="pure-u-1 pure-u-md-2-3">
+                <p>Well? You've read the button. Are you? Well, click it! Or see how we can help you...</p>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3">
+                <button>I'm Design Interested!</button>
+            </div>
+        </section>
+        <!-- Make Description Section built with Pure.CSS -->
+        <section class="pure-g">
+            <article class="pure-u-1">
+                <div class="pure-g">
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <img src="https://via.placeholder.com/300/" alt="Dummy Image" class="pure-img">
+                    </div>
+                    <div class="pure-u-1 pure-u-md-2-3">
+                        <h3>Stand Out!</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci animi deserunt, incidunt dolores nam quae, aspernatur maxime magni illum aut, odit veritatis reiciendis magnam. Deleniti eaque quia ex repellendus rerum illo omnis modi dolor molestias, expedita repellat? Quia, perferendis ab.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="pure-u-1">
+                <div class="pure-g">
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <img src="https://via.placeholder.com/300/" alt="Dummy Image" class="pure-img">
+                    </div>
+                    <div class="pure-u-1 pure-u-md-2-3">
+                        <h3>Cut through the noise!</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci animi deserunt, incidunt dolores nam quae, aspernatur maxime magni illum aut, odit veritatis reiciendis magnam. Deleniti eaque quia ex repellendus rerum illo omnis modi dolor molestias, expedita repellat? Quia, perferendis ab.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <!-- Make Description Section CTA built with Pure.CSS -->
+        <section class="pure-g">
+            <div class="pure-u-1 pure-u-md-2-3">
+                <p>Can we make this for you? C'mon! We asked please! Or maybe your palms need more grease? Read on, because we really want to...</p>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3">
+                <button>Why, sure you can make my brand great!</button>
+            </div>
+        </section>
+        <!-- Grow Description Section built with Pure.CSS -->
+        <section class="pure-g">
+            <article class="pure-u-1">
+                <div class="pure-g">
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <img src="https://via.placeholder.com/300/" alt="Dummy Image" class="pure-img">
+                    </div>
+                    <div class="pure-u-1 pure-u-md-2-3">
+                        <h3>Grow your reach</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci animi deserunt, incidunt dolores nam quae, aspernatur maxime magni illum aut, odit veritatis reiciendis magnam. Deleniti eaque quia ex repellendus rerum illo omnis modi dolor molestias, expedita repellat? Quia, perferendis ab.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <!-- Finally Interested Section with Contact Form built with Pure.CSS -->
+        <section class="pure-g">
+            <div class="pure-u-1">
+                <h2>Finally Interested?</h2>
+            </div>
+            <div class="pure-u-1 pure-u-md-2-3">
+                <form action="#" method="post">
+                    <p>
+                        Hey Avato Media,
+                        <select title="Give us a Complement! It might be worth your while." name="discount" id="contact-discount-input">
+                            <option value="500">your site looks absolutely awesome,</option>
+                            <option value="30">your site is alright looking,</option>
+                            <option value="0">your site could use some work,</option>
+                        </select> but I want
+                        <select title="What kind of service do you want us to provide to you?" name="service" id="contact-service-input">
+                            <option value="website">your web design services</option>
+                            <option value="graphics">your graphic/logo design services</option>
+                            <option value="management">your brand/social media management services</option>
+                        </select> for
+                        <select name="for" id="contact-for-input" title="Who are we building/doing this for?">
+                            <option value="client">Myself</option>
+                            <option value="business">My Company</option>
+                        </select>. My name is
+                        <input type="text" name="fullname" id="contact-fullname-input" title="Enter your full name!" placeholder="Full Name Here">
+                        and I'd love for you to get back to me at
+                        <input type="tel" name="phonenumber" id="contact-number-input" title="Enter your contact number!" placeholder="+1-876-555-5555">
+                        or at
+                        <input type="email" name="email" id="contact-email-input" title="Enter your contact email!" placeholder="fullname@email.com">
+                     </p>
+                     <button type="submit">Send Message</button>
+                </form>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3">
+                <div class="pure-g">
+                    <h4 class="pure-u-1">Here's more stuff to convince ya!</h4>
+                    <article class="pure-u-1">
+                        <div class="pure-g">
+                            <div class="pure-u-1 pure-u-md-1-3">
+                                <img src="https://via.placeholder.com/100" alt="Testimonial Image">
+                            </div>
+                            <div class="pure-u-1 pure-u-md-2-3">
+                                <h5>Testimonial Name</h5>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam eaque distinctio?</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="pure-u-1">
+                        <div class="pure-g">
+                            <div class="pure-u-1 pure-u-md-1-3">
+                                <img src="https://via.placeholder.com/100" alt="Testimonial Image">
+                            </div>
+                            <div class="pure-u-1 pure-u-md-2-3">
+                                <h5>Testimonial Name</h5>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam eaque distinctio?</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="pure-u-1">
+                        <div class="pure-g">
+                            <div class="pure-u-1 pure-u-md-1-3">
+                                <img src="https://via.placeholder.com/100" alt="Testimonial Image">
+                            </div>
+                            <div class="pure-u-1 pure-u-md-2-3">
+                                <h5>Testimonial Name</h5>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam eaque distinctio?</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="pure-u-1">
+                        <div class="pure-g">
+                            <div class="pure-u-1 pure-u-md-1-3">
+                                <img src="https://via.placeholder.com/100" alt="Testimonial Image">
+                            </div>
+                            <div class="pure-u-1 pure-u-md-2-3">
+                                <h5>Testimonial Name</h5>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ipsam eaque distinctio?</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Area built with Pure.CSS-->
+        <footer class="pure-g">
+            <div class="pure-u-1 pure-u-md-2-5">
+                <div class="pure-g">
+                    <div class="pure-u-1 pure-u-md-1-2">
+                        <img src="https://via.placeholder.com/200/?text=AVATO+Media" alt="AVATO Media Logo" class="pure-img">
+                    </div>
+                    <div class="pure-u-1 pure-u-md-1-2">
+                        <h2>AVATO Media</h2>
+                        <p>Copyright &copy; 2023 - AVATO Media Company Ltd.</p>
+                    </div>
+                    <p class="pure-u-1">
+                        I notice that usually some kind of informational text is here, stating something about the company, but that's what the homepage is for! But we do Graphic Design, Media Management, Brand Mangement and Web Development. Soon we'll do Multimedia Publishing of all varieties, video, music and podcasts! A brain child turned active project. Just like your next idea!
+                    </p>
+                </div>
+            </div>
+            <div class="pure-u-1-2 pure-u-md-1-5">
+                <div class="pure-g">
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+                        <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
+                        <li><a href="#"><i class="fab fa-github"></i></a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pure-u-1-2 pure-u-md-2-5">
+                <ul>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">What We Do</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+                <p>Designed Completely by AVATO Media // 😌🇯🇲❤</p>
+            </div>
+        </footer>
+    </div>
+    <script>
+        
+    </script>
+</body>
+</html>
