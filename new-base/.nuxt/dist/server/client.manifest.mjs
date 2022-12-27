@@ -1,0 +1,1 @@
+export { default } from "file:///C:/Users/jagof/Documents/AvatoMedia/Github/avato-media.github.io/new-base/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"

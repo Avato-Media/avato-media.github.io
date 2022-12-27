@@ -1,0 +1,15 @@
+{
+  "@vite/client": {
+    "isEntry": true,
+    "file": "@vite/client",
+    "css": [],
+    "module": true,
+    "resourceType": "script"
+  },
+  "C:/Users/jagof/Documents/AvatoMedia/Github/avato-media.github.io/new-base/node_modules/nuxt/dist/app/entry.mjs": {
+    "resourceType": "script",
+    "module": true,
+    "isEntry": true,
+    "file": "C:/Users/jagof/Documents/AvatoMedia/Github/avato-media.github.io/new-base/node_modules/nuxt/dist/app/entry.mjs"
+  }
+}

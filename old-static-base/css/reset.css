@@ -1,0 +1,22 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+[hidden] {
+    display: none !important;
+}
+svg, image, img, picture, video {
+    display: inline-block;
+    width: 100%;
+}
+a, li, ul, ol {
+    list-style: none;
+    list-style-type: none;
+    -moz-text-decoration-style: none;
+    text-decoration-style: none;
+    text-decoration: none;
+}
