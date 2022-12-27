@@ -1,2 +1,4 @@
 node_modules
 .vscode
+old-static-base
+new-base/node_modules
